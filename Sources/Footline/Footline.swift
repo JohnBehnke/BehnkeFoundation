@@ -42,22 +42,16 @@ public struct Footline: View {
     
     let hapticsGenerator = UINotificationFeedbackGenerator()
     
-    var appName: String
-    var releaseVersion: String
-    var buildVersion: String
+    var appName: String = Bundle.main.appName
+    var releaseVersion: String = Bundle.main.releaseVersionNumber
+    var buildVersion: String = Bundle.main.buildVersionNumber
     var locationName: String
     var symbolName: String
     
-    init(
-        appName: String = Bundle.main.appName,
-        releaseVersion: String = Bundle.main.releaseVersionNumber,
-        buildVersion: String = Bundle.main.buildVersionNumber,
+    public init(
         locationName: String = "Connecticut",
         symbolName: String = "heart.fill"
     ) {
-        self.appName = appName
-        self.releaseVersion = releaseVersion
-        self.buildVersion = buildVersion
         self.locationName = locationName
         self.symbolName = symbolName
     }
@@ -105,9 +99,6 @@ public struct Footline: View {
 struct AppFooter_Previews: PreviewProvider {
     static var previews: some View {
         Footline(
-            appName: "Footline",
-            releaseVersion: "1.0.0",
-            buildVersion: "1",
             locationName: "The Matrix"
         )
     }
