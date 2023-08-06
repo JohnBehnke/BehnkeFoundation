@@ -5,6 +5,7 @@ A SwiftUI View for adding a little fun and interactive footline/footer to your a
 
 - [Add the Package](#package)
 - [Basic Usage](#basic-usage)
+- [Preview](#preview)
 
 ## Package
 
@@ -39,10 +40,14 @@ Footline can take 5 possible parameters:
 5. `symbolName`
 
 They are used in the following format:
-
-`appName` `releaseVersion` (`buildNumber`)
-Made in `locationName` with `symbolName`
+```
+appName releaseVersion (buildNumber)
+Made in locationName with symbolName
+```
 
 By default, `appName`, `releaseVersion`, and `buildNumber` will be read from the app's Bundle, so they should refect those values based on the app you added Footline too.
 
 *Note*: `symbolName` **NEEDS** to be a valid SFSymbol, otherwise nothing will render.
+
+## Preview
+![Footline_Demo](https://github.com/JohnBehnke/Footline/assets/5631869/b24e24ab-b97d-440a-a8d7-881e6515024a)
