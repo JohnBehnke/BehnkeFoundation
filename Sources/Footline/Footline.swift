@@ -25,7 +25,6 @@ public struct Footline: View {
         LinearGradient(colors: [.indigo, .blue], startPoint: .top, endPoint: .bottom),
         LinearGradient(colors: [.mint, .teal], startPoint: .top, endPoint: .bottom),
         LinearGradient(colors: [.purple, .red], startPoint: .top, endPoint: .bottom),
-        LinearGradient(colors: [.purple, .pink], startPoint: .top, endPoint: .bottom),
         LinearGradient(colors: [.blue, .mint], startPoint: .top, endPoint: .bottom),
         LinearGradient(colors: [.red, .pink], startPoint: .top, endPoint: .bottom)
     ]
@@ -36,7 +35,6 @@ public struct Footline: View {
         .pink,
         .indigo,
         .mint,
-        .purple,
         .purple,
         .blue,
         .red
@@ -65,10 +63,14 @@ public struct Footline: View {
     }
     
     public var body: some View {
-        footerText
-            .padding()
-            .foregroundColor(.gray)
-            .font(.caption)
+        HStack {
+            Spacer()
+            footerText
+                .padding()
+                .foregroundColor(.gray)
+                .font(.caption)
+            Spacer()
+        }
     }
     
     var footerText: some View {
@@ -108,6 +110,5 @@ struct AppFooter_Previews: PreviewProvider {
             buildVersion: "1",
             locationName: "The Matrix"
         )
-        .frame(height: 500)
     }
 }
