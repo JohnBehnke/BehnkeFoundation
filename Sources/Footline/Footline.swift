@@ -1,3 +1,10 @@
+//
+//  Footline.swift
+//
+//
+//  Created by John Behnke on 8/5/23.
+//
+
 import SwiftUI
 
 public struct Footline: View {
