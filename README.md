@@ -31,13 +31,10 @@ import Footline
 Footline()
 ```
 
-Footline can take 5 possible parameters:
+Footline can take 2 possible parameters:
 
-1. `appName`
-2. `releaseVersion`
-3. `buildNumber`
-4. `locationName`
-5. `symbolName`
+1. `locationName`
+2. `symbolName`
 
 They are used in the following format:
 ```
@@ -45,9 +42,22 @@ appName releaseVersion (buildNumber)
 Made in locationName with symbolName
 ```
 
-By default, `appName`, `releaseVersion`, and `buildNumber` will be read from the app's Bundle, so they should refect those values based on the app you added Footline too.
-
 *Note*: `symbolName` **NEEDS** to be a valid SFSymbol, otherwise nothing will render.
+
+If you want to add some kind of Gesture Recognizer to the Footline, you'll need to use a `simultaneousGesture`
+
+Example:
+
+```swift
+import Footline
+...
+Footline()
+.simultaneousGesture(
+  TapGesture().onEnded {
+      print("Footline Tap")
+  }
+)
+```
 
 ## Preview
 ![Footline_Demo](https://github.com/JohnBehnke/Footline/assets/5631869/b24e24ab-b97d-440a-a8d7-881e6515024a)
