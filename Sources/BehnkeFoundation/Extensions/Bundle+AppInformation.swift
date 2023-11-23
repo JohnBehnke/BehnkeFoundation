@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal extension Bundle {
+extension Bundle {
   var releaseVersionNumber: String {
     return infoDictionary?["CFBundleShortVersionString"] as? String ?? "20XX.YY"
   }

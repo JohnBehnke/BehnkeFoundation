@@ -1,7 +1,7 @@
 import XCTest
-@testable import Footline
+@testable import BehnkeFoundation
 
-final class FootlineTests: XCTestCase {
+final class BehnkeFoundationTests: XCTestCase {
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
