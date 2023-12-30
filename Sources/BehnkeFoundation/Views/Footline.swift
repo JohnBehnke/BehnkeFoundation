@@ -24,7 +24,9 @@ public struct Footline: View {
         .red
     ]
     
+#if os(iOS)
     let hapticsGenerator = UINotificationFeedbackGenerator()
+#endif
     
     var appName: String = Bundle.main.appName
     var releaseVersion: String = Bundle.main.releaseVersionNumber
@@ -65,7 +67,9 @@ public struct Footline: View {
                     .animation(.spring(response: 0.2, dampingFraction: 0.1), value: self.isPressed)
                 
             }
+#if os(iOS)
             .sensoryFeedback(.impact, trigger: isPressed)
+#endif
             .onTapGesture {
                 symbolColor = symbolColors[numberOfPresses % symbolColors.count]
                 numberOfPresses += 1
