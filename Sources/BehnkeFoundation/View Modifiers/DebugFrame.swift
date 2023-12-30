@@ -19,7 +19,7 @@ struct ViewDebugModifier: ViewModifier {
 }
 
 extension View {
-    func debugFrame(_ color: Color = .red) -> some View {
+    public func debugFrame(_ color: Color = .red) -> some View {
         modifier(ViewDebugModifier(color: color))
     }
 }

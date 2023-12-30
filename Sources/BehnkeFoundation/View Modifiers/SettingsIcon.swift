@@ -26,7 +26,7 @@ struct SettingsIcon: ViewModifier {
 }
 
 extension View {
-    func settingsIcon(_ color: Color) -> some View {
+    public func settingsIcon(_ color: Color) -> some View {
         modifier(SettingsIcon(color: color))
     }
 }
