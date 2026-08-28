@@ -1,5 +1,5 @@
 //
-//  SettingIcon.swift
+//  SettingsIcon.swift
 //
 //
 //  Created by John Behnke on 12/30/23.
@@ -18,7 +18,7 @@ struct SettingsIcon: ViewModifier {
             .imageScale(.medium)
             .padding(5)
             .background(color.gradient)
-            .foregroundColor(.white)
+            .foregroundStyle(.white)
             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
             .shadow(color: color.opacity(colorScheme == .dark ? 0.5 : 0), radius: 3)
         

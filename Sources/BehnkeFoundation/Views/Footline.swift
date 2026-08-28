@@ -11,28 +11,12 @@ public struct Footline: View {
     @State private var isPressed: Bool = false
     @State private var numberOfPresses: Int = 0
     @State private var symbolColor: Color = .red
-    
-    let symbolColors: [Color] = [
-        .blue,
-        .orange,
-        .green,
-        .pink,
-        .indigo,
-        .mint,
-        .purple,
-        .blue,
-        .red
-    ]
-    
-#if os(iOS)
-    let hapticsGenerator = UINotificationFeedbackGenerator()
-#endif
-    
-    var appName: String = Bundle.main.appName
-    var releaseVersion: String = Bundle.main.releaseVersionNumber
-    var buildVersion: String = Bundle.main.buildVersionNumber
-    var locationName: String
-    var symbolName: String
+
+    let appName: String = Bundle.main.appName
+    let releaseVersion: String = Bundle.main.releaseVersionNumber
+    let buildVersion: String = Bundle.main.buildVersionNumber
+    let locationName: String
+    let symbolName: String
     
     public init(
         locationName: String = "Connecticut",
@@ -47,7 +31,7 @@ public struct Footline: View {
             Spacer()
             footerText
                 .padding()
-                .foregroundColor(.gray)
+                .foregroundStyle(.gray)
                 .font(.caption)
             Spacer()
         }
@@ -71,10 +55,11 @@ public struct Footline: View {
             .sensoryFeedback(.impact, trigger: isPressed)
 #endif
             .onTapGesture {
-                symbolColor = symbolColors[numberOfPresses % symbolColors.count]
+                symbolColor = .randomColor()
                 numberOfPresses += 1
                 isPressed.toggle()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                Task {
+                    try? await Task.sleep(for: .seconds(0.2))
                     isPressed.toggle()
                 }
             }
