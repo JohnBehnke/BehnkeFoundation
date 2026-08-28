@@ -9,7 +9,11 @@ import SwiftUI
 
 extension Color {
     /// Returns a random color from ``allColors``.
-    public static func randomColor() -> Color {
-        self.allColors.randomElement() ?? .red
+    ///
+    /// - Parameter excludingNeutrals: When `true`, picks from ``vibrantColors`` instead —
+    ///   skipping `.black`, `.white`, `.gray`, and `.brown`. Defaults to `false`.
+    public static func randomColor(excludingNeutrals: Bool = false) -> Color {
+        let palette = excludingNeutrals ? vibrantColors : allColors
+        return palette.randomElement() ?? .red
     }
 }

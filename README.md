@@ -67,8 +67,10 @@ Image(systemName: "gear")
 ## Color Extensions
 
 ```swift
-Color.allColors     // every built-in SwiftUI system color, .red through .white
-Color.randomColor() // a random one from allColors
+Color.allColors                              // every built-in SwiftUI system color, .red through .white
+Color.vibrantColors                          // allColors, minus .black, .white, .gray, and .brown
+Color.randomColor()                          // a random one from allColors
+Color.randomColor(excludingNeutrals: true)   // a random one from vibrantColors
 ```
 
 ## Date Extensions

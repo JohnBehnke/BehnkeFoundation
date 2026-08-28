@@ -178,7 +178,7 @@ private struct AttributionButton: View {
     var body: some View {
         if isInteractive {
             Button {
-                symbolColor = .randomColor()
+                symbolColor = .randomColor(excludingNeutrals: true)
                 numberOfPresses += 1
                 isPressed.toggle()
                 Task {
