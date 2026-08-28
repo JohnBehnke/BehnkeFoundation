@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Color {
-  static func randomColor() -> Color {
+  public static func randomColor() -> Color {
     self.allColors.randomElement() ?? .red
   }
 }

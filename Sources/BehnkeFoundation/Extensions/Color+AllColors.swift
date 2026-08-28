@@ -7,7 +7,7 @@
 import SwiftUI
 
 extension Color {
-  static let allColors: [Color] = [
+  public static let allColors: [Color] = [
     .red, .orange, .yellow, .green, .mint, .teal, .cyan, .blue, .indigo, .purple, .pink, .brown, .gray, .black, .white
   ]
 }
