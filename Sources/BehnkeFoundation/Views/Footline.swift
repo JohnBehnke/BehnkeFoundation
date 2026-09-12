@@ -28,6 +28,7 @@ public struct Footline: View {
     let origin: Origin
     let symbolName: String?
     let isInteractive: Bool
+    let symbolColor: Color
 
     /// Creates a footer view.
     ///
@@ -40,24 +41,29 @@ public struct Footline: View {
     ///   - isInteractive: Whether tapping the credit line cycles the icon through a random
     ///     color and plays a haptic. When `false`, the icon renders flat with no shadow,
     ///     gradient, or animation, and the row isn't a button at all.
+    ///   - symbolColor: The icon's color. When `isInteractive` is `false`, this is the icon's
+    ///     fixed color. When `isInteractive` is `true`, this is only the color shown before
+    ///     the first tap — tapping randomizes it from there. Defaults to `.red`.
     public init(
         locationName: String = "Maine",
         origin: Origin = .human,
         symbolName: String? = nil,
-        isInteractive: Bool = true
+        isInteractive: Bool = true,
+        symbolColor: Color = .red
     ) {
         self.locationName = locationName
         self.origin = origin
         self.symbolName = symbolName ?? origin.display.defaultSymbolName
         self.isInteractive = isInteractive
+        self.symbolColor = symbolColor
     }
 
     public var body: some View {
         VStack(spacing: 4) {
             Text("\(self.appName) \(self.releaseVersion) (\(self.buildVersion))")
                 .font(.caption2)
-                .foregroundStyle(.tertiary)
-            AttributionButton(locationName: locationName, origin: origin, symbolName: symbolName, isInteractive: isInteractive)
+                .foregroundStyle(.secondary)
+            AttributionButton(locationName: locationName, origin: origin, symbolName: symbolName, isInteractive: isInteractive, symbolColor: symbolColor)
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -161,7 +167,7 @@ extension Footline {
 private struct AttributionButton: View {
     @State private var isPressed: Bool = false
     @State private var numberOfPresses: Int = 0
-    @State private var symbolColor: Color = .red
+    @State private var symbolColor: Color
 
     private let pressedScale: CGFloat = 0.75
     private let pressedShadowRadius: CGFloat = 3
@@ -174,6 +180,14 @@ private struct AttributionButton: View {
     let origin: Footline.Origin
     let symbolName: String?
     let isInteractive: Bool
+
+    init(locationName: String, origin: Footline.Origin, symbolName: String?, isInteractive: Bool, symbolColor: Color) {
+        self.locationName = locationName
+        self.origin = origin
+        self.symbolName = symbolName
+        self.isInteractive = isInteractive
+        self._symbolColor = State(initialValue: symbolColor)
+    }
 
     var body: some View {
         if isInteractive {
@@ -217,6 +231,7 @@ private struct AttributionButton: View {
                     } else {
                         Image(systemName: symbolName)
                             .font(.caption2)
+                            .foregroundStyle(symbolColor)
                             .accessibilityHidden(true)
                     }
                 }
@@ -236,5 +251,6 @@ private struct AttributionButton: View {
         Footline(locationName: "The Matrix")
         Footline(locationName: "The Matrix", origin: .assisted(agents: [.claude, .codex]))
         Footline(locationName: "The Matrix", origin: .agent(agents: [.claude, .codex]))
+        Footline(locationName: "The Matrix", isInteractive: false, symbolColor: .blue)
     }
 }
